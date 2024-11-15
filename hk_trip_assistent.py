@@ -1,8 +1,14 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
 import streamlit as st
+if st.secrets["IS_PRODUCTION"]=='True':
+
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
+import os
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["hf_access_token"]
+
 from langchain_core.output_parsers import StrOutputParser
 from langchain_chroma import Chroma
 
