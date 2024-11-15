@@ -9,7 +9,7 @@ if st.secrets["IS_PRODUCTION"]=='True':
     os.environ['LANGCHAIN_ENDPOINT'] = st.secrets["LANGCHAIN_ENDPOINT"]
     os.environ['LANGCHAIN_API_KEY'] = st.secrets["LANGCHAIN_API_KEY"]
     os.environ['LANGCHAIN_PROJECT'] = st.secrets["LANGCHAIN_PROJECT"]
-    
+
 import os
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["hf_access_token"]
 
@@ -36,10 +36,10 @@ from langchain.prompts import ChatPromptTemplate
 
 
 # 1. vector-store pre-rendered
-# persist_directory = 'large_db'
-# model_name = "hkunlp/instructor-large"
-persist_directory = 'base_db'
-model_name = "hkunlp/instructor-base"
+persist_directory = 'large_db'
+model_name = "hkunlp/instructor-large"
+# persist_directory = 'base_db'
+# model_name = "hkunlp/instructor-base"
 
 # Supplying a persist_directory will store the embeddings on disk
 instructor_embeddings = HuggingFaceInstructEmbeddings(model_name=model_name, 
@@ -178,7 +178,7 @@ st.markdown(
     <div style='position: fixed; bottom: 0; left: 0; right: 0; text-align: center; background-color: white; padding: 10px; border-top: 1px solid #ccc;'>
                     <small>
             This application utilizes advanced AI technologies, including Hugging Face model (Meta Llama-3-8B), Chroma embeddings, and LangChain framework to provide travel recommendations in Hong Kong. <br>
-            Huge thanks to HKU NLP Department for opensourcing their instructor-base text embedding model for making this computationally easy. <br>
+            Huge thanks to HKU NLP Department for opensourcing their instructor-large text embedding model for making this computationally easy. <br>
             There is slight chance of the AI hallucinating, so please forget and forgive if the AI makes up a non-existent place or district 😛.  
         </small>
     </div>
