@@ -1,6 +1,11 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# __import__('pysqlite3')
+# import sys
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+# import os 
+# os.environ['LANGCHAIN_TRACING_V2'] = 'true'
+# os.environ['LANGCHAIN_ENDPOINT'] = 'https://api.smith.langchain.com'
+# os.environ['LANGCHAIN_API_KEY'] = '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'
 
 import streamlit as st
 from langchain_core.output_parsers import StrOutputParser
