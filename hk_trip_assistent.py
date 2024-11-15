@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+
 if st.secrets["IS_PRODUCTION"]=='True':
 
     __import__('pysqlite3')
@@ -10,7 +12,6 @@ if st.secrets["IS_PRODUCTION"]=='True':
     os.environ['LANGCHAIN_API_KEY'] = st.secrets["LANGCHAIN_API_KEY"]
     os.environ['LANGCHAIN_PROJECT'] = st.secrets["LANGCHAIN_PROJECT"]
 
-import os
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["hf_access_token"]
 
 
