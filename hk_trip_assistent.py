@@ -2,27 +2,35 @@
 # import sys
 # sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-# import os 
-# os.environ['LANGCHAIN_TRACING_V2'] = 'true'
-# os.environ['LANGCHAIN_ENDPOINT'] = 'https://api.smith.langchain.com'
-# os.environ['LANGCHAIN_API_KEY'] = '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'
-
 import streamlit as st
 from langchain_core.output_parsers import StrOutputParser
-from langchain.embeddings import HuggingFaceInstructEmbeddings
-from operator import itemgetter
 from langchain_chroma import Chroma
+
 from langchain_huggingface import HuggingFaceEndpoint
+# from langchain_huggingface import HuggingFaceEmbeddings
+
+from InstructorEmbedding import INSTRUCTOR
+
+# from langchain_community.embeddings import HuggingFaceInstructEmbeddings
+from langchain.embeddings import HuggingFaceInstructEmbeddings
+
+from operator import itemgetter
+
+
+
+
 from langchain.prompts import ChatPromptTemplate
 
 
 # 1. vector-store pre-rendered
-persist_directory = 'large_db'
-model_name = "hkunlp/instructor-large"
+# persist_directory = '/large_db/'
+# model_name = "hkunlp/instructor-large"
+persist_directory = '/base_db/'
+model_name = "hkunlp/instructor-base"
 
 # Supplying a persist_directory will store the embeddings on disk
 instructor_embeddings = HuggingFaceInstructEmbeddings(model_name=model_name, 
-                                                      model_kwargs={"device": "cuda"})
+                                                      model_kwargs={"device": "cpu"})
 embedding = instructor_embeddings
 
 # Now we can load the persisted database from disk, and use it as normal. 
@@ -35,8 +43,8 @@ retriever = vectordb.as_retriever(search_kwargs={"k": 3})
 
 #connect huggingface llm llama
 llm = HuggingFaceEndpoint(
-     # repo_id="microsoft/Phi-3-mini-4k-instruct",
-    ##repo_id="microsoft/Phi-3.5-mini-instruct",
+    #  repo_id="microsoft/Phi-3-mini-4k-instruct",
+    # repo_id="microsoft/Phi-3.5-mini-instruct",
      repo_id="meta-llama/Meta-Llama-3-8B-Instruct",
     ####repo_id="meta-llama/Llama-3.2-3B-Instruct",
 
@@ -123,14 +131,13 @@ st.markdown("<h1 style='text-align: center;'>Hong Kong 🔥 🇭🇰 🔥 Trip P
 
 
 def generate_response(question):
-    print(question)
+    # print(question)
     answer = final_rag_chain.invoke({"question":question})
     # print(answer)
 
     st.info(answer)
 
 
-# Using Markdown to make the text larger and more noticeable
 st.markdown("<h4 style='text-align: center; color: #FF5733;'>How do you want to plan your trip in Hong Kong?</h4>", unsafe_allow_html=True)
 # st.markdown("<h3 style='text-align: center; color: #FF5733;'>ASK AWAY!!!</h3>", unsafe_allow_html=True)
 
@@ -158,7 +165,7 @@ st.markdown(
     <div style='position: fixed; bottom: 0; left: 0; right: 0; text-align: center; background-color: white; padding: 10px; border-top: 1px solid #ccc;'>
                     <small>
             This application utilizes advanced AI technologies, including Hugging Face model (Meta Llama-3-8B), Chroma embeddings, and LangChain framework to provide travel recommendations in Hong Kong. <br>
-            Huge thanks to HKU NLP Department for opensourcing their instructor-large text embedding model for making this computationally easy. <br>
+            Huge thanks to HKU NLP Department for opensourcing their instructor-base text embedding model for making this computationally easy. <br>
             There is slight chance of the AI hallucinating, so please forget and forgive if the AI makes up a non-existent place or district 😛.  
         </small>
     </div>
