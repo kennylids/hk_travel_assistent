@@ -6,7 +6,8 @@ import streamlit as st
 from langchain_core.output_parsers import StrOutputParser
 from langchain_chroma import Chroma
 
-from langchain_huggingface import HuggingFaceEndpoint
+# from langchain_huggingface import HuggingFaceEndpoint
+from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 # from langchain_huggingface import HuggingFaceEmbeddings
 
 from InstructorEmbedding import INSTRUCTOR
