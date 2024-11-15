@@ -24,9 +24,9 @@ from langchain.prompts import ChatPromptTemplate
 
 
 # 1. vector-store pre-rendered
-# persist_directory = '/large_db/'
+# persist_directory = 'large_db'
 # model_name = "hkunlp/instructor-large"
-persist_directory = '/base_db/'
+persist_directory = 'base_db'
 model_name = "hkunlp/instructor-base"
 
 # Supplying a persist_directory will store the embeddings on disk
