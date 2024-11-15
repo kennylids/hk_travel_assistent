@@ -5,9 +5,15 @@ if st.secrets["IS_PRODUCTION"]=='True':
     import sys
     sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-
+    os.environ['LANGCHAIN_TRACING_V2'] = st.secrets["LANGCHAIN_TRACING_V2"]
+    os.environ['LANGCHAIN_ENDPOINT'] = st.secrets["LANGCHAIN_ENDPOINT"]
+    os.environ['LANGCHAIN_API_KEY'] = st.secrets["LANGCHAIN_API_KEY"]
+    os.environ['LANGCHAIN_PROJECT'] = st.secrets["LANGCHAIN_PROJECT"]
+    
 import os
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["hf_access_token"]
+
+
 
 from langchain_core.output_parsers import StrOutputParser
 from langchain_chroma import Chroma
