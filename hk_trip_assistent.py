@@ -76,8 +76,8 @@ Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template_travel)
 
-user_input = "I want vacation plan for a week in Hong Kong. I want an iterinary where I can have good siu mei and dim sum and then some coffee. I want to spend one day hiking exploring nature as well."
-question = user_input
+# user_input = "I want a plan for 5-day vacation in Hong Kong. I want an iterinary where I can have good siu mei and dim sum and then some coffee. I want to spend one day hiking exploring nature as well."
+# question = user_input
 
 # RAG-Fusion: Related
 template = """You are a helpful traveling assistant in Hong Kong that generates multiple search queries based on a single input query. \n
@@ -160,7 +160,7 @@ import streamlit as st
 with st.form("my_form"):
     st.markdown("<h4 style='text-align: center;'>ASK AWAY!!!</h4>", unsafe_allow_html=True)
     text = st.text_area('Below is an example. I encourage you to think about what kind of things you\'d like to see or do in the city. Coffee, dumplings, Michelin foods, nature, hikes, culture, luxury stuff, weather, shopping....', 
-        "I want vacation plan for a week in Hong Kong. I want an itinerary where I can have good siu mei and dim sum and then some coffee. I want to spend one day hiking exploring nature as well. "   
+        "I want a 5-day vacation plan in Hong Kong. I want an itinerary where I can have good siu mei and dim sum and then some coffee. I want to spend one day hiking exploring nature as well. "   
     )
     # Using a Markdown container for the button to align it to the right
     col1, col2 = st.columns([6, 1])  # Create two columns
